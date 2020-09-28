@@ -1,0 +1,34 @@
+Let's talk about topological data analysis!
+
+In data analysis, we often encounter the following problem: say if we want to categorize or grouping some data, a natual method is to endow the data sample space
+some sort of metric (i.e, distance) and group those data points that are "close" to each other together. The idea seems natural and simple enough, but what does "close"
+mean? In reality, we may use some algorithm like KNN, and assign a parameter r so that a cluster of data points will be grouped together if element-wise distance in
+cluster is smaller than r. Then we vary the value of r, and find a state which we could claim we have a classification! But there is a problem, the data groups may
+have some non-standard distribution, e.g, one group forms a circle and the other group is enclosed by that circle, or more generally in topological language, 
+groups are only path-connected but not simply connected. In this case, the above algo won't work. Since I have used topological language to describe the difficulty,
+you may have already guessed that I'm going to propose some topological method. 
+
+Homology is a common tool in topology, loosely speaking, it somehow differentiate the shapes of spaces. So, if our data points are scattered into/onto different 
+surfaces, homology should tell (hopefully) the two groups are different. One common topological method is called Cech homology, and this is relted to our previous 
+algo in the following way: the method is based on how close the data points are. Still we use a parameter r, and consider standard balls with radius r. We use these
+balls to cover the data space, and the covering gives rise to Cech homology. We may then vary the value of r, get different covering, which yield different homologies.
+If, say, r+dr, gives the same result, we may stop the procedure. In this method, we use a parameter to control our homology results, so called persistent homology.
+
+There is a wel-known persistent homology algorithm, let's say we have a Cech complex set up and a triangulation induced by it as well. The the homology algo goes as follows:
+1. We mark all vertices as generator vertices. And index all vertices/edges/faces by natural numbers.
+2. Add edges (then faces) and pair with vertices by the following rule:
+  - Let c be a container, default to be empty.
+  - For certain edge/face $\tau$, calculate it's boundary $\partial\tau$, push all elements into c and find the largest indexed vertex/edge $\sigma$ in it.
+  - while $\sigma$ is already paired and c is not empty, do:
+    * find $d$ which is paired with $\sigma$.
+    * calculate $\partial d$ and update c as $c+\partial d$.
+    * find the largest indexed element $\sigma$ in c.
+    * end if $\sigma$ is not paired or c is empty.
+  - if c is not empty, pair $\sigma$ with $\tau$. Else mark $\tau$ as a generator.
+3. After going through all edges and faces, the unpaired generator edges will give us the generating element of the homology group!
+
+This is a fantastic algorithm, but not good enough! Homology is not the strongest classifer of spaces, a version that is more powerful is called homotopy. In dimension
+one, it's called fundamental group, and it's the non-commutative version of homology. Why homotopy is stronger than homology? Say our data point generate a 3D space
+but carved out a knot, e.g, the complement of a trefoil knot. Then homology will not give you much info since homology of the complementary of knot is always $\mathbb{Z}$.
+However, homotopy can! Because homotopy is not commutative, it actually tell you how many rounds do we circle around something. The attached paper is an algorithm 
+I developed for persistent homotopy, which is essentially the non-commutative version of the persistent homology algo.
