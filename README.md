@@ -1,10 +1,9 @@
-# Computational Conformal Geometry Homework
-
-This C++ project framework is used to help students to implement geometric algorithms.
+# Harmonic map, holomorphic map and Hodge decomposition
+This project discretizes conformal map from plane to compact Riemann surface. As a result, it allows us to show holomorphic 1-forms on the surface. This can be view as a rendering method, use which I displayed a video clip on torus (genus=1 surface). Feel free to change it to other image or videos and play with it.
 
 ## System
 
-The code has been tested on Windows 10, Ubuntu 18.04 and MacOS 10.15.5, if there is any problem, please let me know.
+The code was ran on MacOS Catalina. 
 
 ## Directory Structure
 
@@ -18,5 +17,19 @@ resources           -- Some resources needed.
 ```
 
 ## Configuration
+Set up
+```
+mkdir build
+cd build
+cmake ..
+```
 
-Follow the instruction in the README.md of each algorithm folder.
+Compile
+```
+make -j4
+```
+
+Run
+```
+HodgeDecomposition.exe data/boy.boy.m textures/xx.bmp
+```
