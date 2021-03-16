@@ -129,7 +129,6 @@ void MeshLib::CHodgeDecomposition::_d(int dimension)
             for (M::FaceHalfedgeIterator fhiter(pf); !fhiter.end(); fhiter++)
             {
                 M::CHalfEdge* ph = *fhiter;
-                //insert your code here, 
                 //convert vertex->form() to halfedge->form()
                 M::CVertex* ps = dynamic_cast<M::CVertex*>(ph->source());
                 M::CVertex* pt = dynamic_cast<M::CVertex*>(ph->target());
@@ -149,7 +148,6 @@ void MeshLib::CHodgeDecomposition::_d(int dimension)
             for (M::FaceHalfedgeIterator fhiter(pf); !fhiter.end(); fhiter++)
             {
                 M::CHalfEdge* ph = *fhiter;
-                //insert your code here, 
                 //convert halfedge->form() to face->form()
                 pf->form() += ph->form();
             }
@@ -170,7 +168,6 @@ void MeshLib::CHodgeDecomposition::_delta(int dimension)
             for (M::FaceHalfedgeIterator fhiter(pf); !fhiter.end(); fhiter++)
             {
                 M::CHalfEdge* ph = *fhiter;
-                //insert your code here, 
                 //convert face->form() to halfedge->form()
                 M::CEdge* e= dynamic_cast<M::CEdge*>(ph->edge());
                 M::CFace* pfn = dynamic_cast<M::CFace*>(ph->he_sym()->face());
@@ -185,7 +182,6 @@ void MeshLib::CHodgeDecomposition::_delta(int dimension)
         for (M::MeshVertexIterator viter(m_pMesh); !viter.end(); viter++)
         {
             M::CVertex* pv = *viter;
-            //insert your code here, 
             //convert halfedge->form() to vertex->form()
             pv->form() = 0;
             for(M::VertexEdgeIterator eiter(pv); !eiter.end(); eiter++) {
@@ -213,7 +209,7 @@ void MeshLib::CHodgeDecomposition::_remove_exact_form()
         for (M::FaceHalfedgeIterator fhiter(pf); !fhiter.end(); fhiter++)
         {
             M::CHalfEdge* ph = *fhiter;
-            //insert your code here, remove d vertex->form() from halfedge->form()
+            //remove d vertex->form() from halfedge->form()
             M::CVertex * ps = dynamic_cast<M::CVertex*>(ph->source());
             M::CVertex * pt = dynamic_cast<M::CVertex*>(ph->target());
 
@@ -372,7 +368,6 @@ void MeshLib::CHodgeDecomposition::_compute_coexact_form()
             M::CEdge* e = dynamic_cast<M::CEdge*>(ph->edge());
             if (ps != NULL)
             {
-                //insert your code here
                M::CFace* pfn = dynamic_cast<M::CFace*>(ps->face());
                int nid = pfn->idx();
                double w = 1.0 / e->weight();
@@ -381,7 +376,6 @@ void MeshLib::CHodgeDecomposition::_compute_coexact_form()
             }
             else // boundary face
             {
-                //insert your code here
                 sw += 1.0 / e->weight();
             }
         }
@@ -464,7 +458,6 @@ void MeshLib::CHodgeDecomposition::_remove_coexact_form()
         M::CFace* pf = *fiter;
         for (M::FaceHalfedgeIterator fhiter(pf); !fhiter.end(); fhiter++)
         {
-            //insert your code here
             //remove delta face->from() from halfedge->form()
             M::CHalfEdge *ph = *fhiter;
             M::CFace* f = dynamic_cast<M::CFace*>(ph->face());

@@ -1,13 +1,10 @@
-# Harmonic map, holomorphic map and Hodge decomposition on compact Riemman surface
-This is a demonstration of computational geometry. Professor Xianfeng David Gu gave a fantastic lecture on this topic in the summer of 2020, please go to his webpage for the course material and lecture videos (I gave two guest lecture there ^_^): 
-https://www3.cs.stonybrook.edu/~gu/lectures/2020/
+# Computational Conformal Geometry Homework
 
-
-This C++ code is used to implement geometric algorithms of the above maths concept. This allows us to realize holomorphic 1-forms on the surface and use it to render images/videos. For example, I have pasted a video clip on torus using conformal map from plane to torus. Feel free to change any texture or image/video you want!
+This C++ project framework is used to help students to implement geometric algorithms.
 
 ## System
 
-The code was run on MacOS Catalina.
+The code has been tested on Windows 10, Ubuntu 18.04 and MacOS 10.15.5, if there is any problem, please let me know.
 
 ## Directory Structure
 
@@ -21,20 +18,5 @@ resources           -- Some resources needed.
 ```
 
 ## Configuration
-Configuration:
-``` txt
-mkdir build
-cd build
-cmake ..
-```
 
-Compile:
-``` txt
-make -j4
-```
-
-Run:
-``` txt
-HodgeDecomposition.exe data/boy/boy.m textures/xx.bmp
-```
-
+Follow the instruction in the README.md of each algorithm folder.
